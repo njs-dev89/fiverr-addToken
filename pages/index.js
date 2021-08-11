@@ -8,12 +8,12 @@ const useStyles = makeStyles({
   },
 });
 
-function index() {
+function HomePage() {
   const classes = useStyles();
   return (
     <div>
       <div className={classes.imgContainer}>
-        <img src="/images/logo.svg" />
+        <img src="/images/logo.svg" alt="ethereum logo" />
       </div>
 
       <AddTokenTabs />
@@ -21,4 +21,4 @@ function index() {
   );
 }
 
-export default index;
+export default HomePage;
