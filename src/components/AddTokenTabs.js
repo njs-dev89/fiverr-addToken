@@ -39,7 +39,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: "500px",
+    width: "clamp(400px, 90vw, 550px)",
     position: "relative",
     left: "50%",
     transform: "translateX(-50%)",

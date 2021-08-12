@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 import AddTokenTabs from "../components/AddTokenTabs";
 import Image from "next/image";
-import logo from "../public/images/logo.svg";
+import logo from "../../public/images/logo.svg";
 
 const useStyles = makeStyles({
   imgContainer: {
