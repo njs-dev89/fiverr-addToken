@@ -70,7 +70,6 @@ export default function AddressForm({
         error={coinError.hasError}
         helperText={coinError.message}
         margin="normal"
-        mt={4}
         name="coinAddress"
         value={values.coinAddress}
         onChange={(e) => {
