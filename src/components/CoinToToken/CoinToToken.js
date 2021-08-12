@@ -9,8 +9,15 @@ function CoinToTokenForm() {
     coinAddress: "",
     tokenAddress: "",
   });
+
   const [step, setStep] = useState(1);
   const [message, setMessage] = useState("");
+  const [successData, setSuccessData] = useState({
+    address: "",
+    txid: "",
+    amount: "",
+  });
+
   switch (step) {
     case 1:
       return (
@@ -19,13 +26,18 @@ function CoinToTokenForm() {
           setStep={setStep}
           values={values}
           updateValue={updateValue}
-          resetForm={resetForm}
         />
       );
     case 2:
-      return <SignatureForm message={message} />;
+      return (
+        <SignatureForm
+          message={message}
+          setSuccessData={setSuccessData}
+          setStep={setStep}
+        />
+      );
     case 3:
-      return <EthereumAddress address={message} setStep={setStep} />;
+      return <EthereumAddress successData={successData} setStep={setStep} />;
   }
 }
 

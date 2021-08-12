@@ -1,4 +1,4 @@
-import { Button, makeStyles, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 
 function mockApi() {
@@ -12,7 +12,7 @@ function mockApi() {
   }
   return {
     responseStatus: 2,
-    ethereumAddress: "Display Ethereum Address",
+    message: "Display Error message",
   };
 }
 
@@ -21,7 +21,6 @@ export default function AddressForm({
   setStep,
   values,
   updateValue,
-  resetForm,
 }) {
   const [coinError, setCoinError] = useState({
     hasError: false,
@@ -53,12 +52,10 @@ export default function AddressForm({
     const res = mockApi();
     if (res.responseStatus === 1) {
       setMessage(res.message);
-      resetForm({ coinAddress: "", tokenAddress: "" });
       setStep(2);
     }
     if (res.responseStatus === 2) {
-      setMessage(res.ethereumAddress);
-      setStep(3);
+      setCoinError({ hasError: true, message: res.message });
     }
   }
   return (

@@ -20,7 +20,6 @@ export default function EmailForm({
   setStep,
   values,
   updateValue,
-  resetForm,
 }) {
   const [emailError, setEmailError] = useState({
     hasError: false,
@@ -50,12 +49,10 @@ export default function EmailForm({
 
     const res = mockApi();
     if (res.responseStatus === 1) {
-      resetForm({ emailAddress: "", tokenAddress: "" });
       setStep(2);
     }
     if (res.responseStatus === 2) {
-      setMessage(res.ethereumAddress);
-      setStep(3);
+      setEmailError({ hasError: true, message: "Email is ot valid" });
     }
   }
   return (
