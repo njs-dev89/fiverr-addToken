@@ -5,7 +5,7 @@ import AddressForm from "./AddressForm";
 import useForm from "../../custom-hooks/useForm";
 
 function CoinToTokenForm() {
-  const { values, updateValue } = useForm({
+  const { values, updateValue, resetForm } = useForm({
     coinAddress: "",
     tokenAddress: "",
   });
@@ -19,6 +19,7 @@ function CoinToTokenForm() {
           setStep={setStep}
           values={values}
           updateValue={updateValue}
+          resetForm={resetForm}
         />
       );
     case 2:

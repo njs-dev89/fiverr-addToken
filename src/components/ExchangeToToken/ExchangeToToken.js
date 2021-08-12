@@ -5,7 +5,7 @@ import EmailForm from "./EmailForm";
 import OtpInputForm from "./OtpInputForm";
 
 export default function ExchangeToToken() {
-  const { values, updateValue } = useForm({
+  const { values, updateValue, resetForm } = useForm({
     emailAddress: "",
     tokenAddress: "",
   });
@@ -19,6 +19,7 @@ export default function ExchangeToToken() {
           setStep={setStep}
           values={values}
           updateValue={updateValue}
+          resetForm={resetForm}
         />
       );
     case 2:

@@ -1,5 +1,5 @@
 import { Button, makeStyles, TextField } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 
 function mockApi() {
   const number = Math.ceil(Math.random() * 10);
@@ -21,12 +21,39 @@ export default function AddressForm({
   setStep,
   values,
   updateValue,
+  resetForm,
 }) {
+  const [coinError, setCoinError] = useState({
+    hasError: false,
+    message: "",
+  });
+
+  const [tokenError, setTokenError] = useState({
+    hasError: false,
+    message: "",
+  });
+
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (values.coinAddress === "") {
+      return setCoinError({
+        hasError: true,
+        message: "*Email Address is required",
+      });
+    }
+
+    if (values.tokenAddress === "") {
+      return setTokenError({
+        hasError: true,
+        message: "*Token Address is required",
+      });
+    }
+
     const res = mockApi();
     if (res.responseStatus === 1) {
       setMessage(res.message);
+      resetForm({ coinAddress: "", tokenAddress: "" });
       setStep(2);
     }
     if (res.responseStatus === 2) {
@@ -40,20 +67,30 @@ export default function AddressForm({
         label="Coin Address"
         variant="outlined"
         fullWidth
+        error={coinError.hasError}
+        helperText={coinError.message}
         margin="normal"
         mt={4}
         name="coinAddress"
         value={values.coinAddress}
-        onChange={updateValue}
+        onChange={(e) => {
+          setCoinError({ hasError: false, message: "" });
+          updateValue(e);
+        }}
       />
       <TextField
         label="Token Address"
         variant="outlined"
         fullWidth
+        error={tokenError.hasError}
+        helperText={tokenError.message}
         margin="normal"
         name="tokenAddress"
         value={values.tokenAddress}
-        onChange={updateValue}
+        onChange={(e) => {
+          setTokenError({ hasError: false, message: "" });
+          updateValue(e);
+        }}
       />
       <Button type="submit" variant="contained" color="primary">
         Submit
